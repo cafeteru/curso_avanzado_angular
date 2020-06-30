@@ -1,10 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 import { FavouritesComponent } from './favourites/favourites.component';
+import { LoginComponent } from './login/login.component';
+import { NewUserComponent } from './new-user/new-user.component';
 
 @NgModule({
-  declarations: [FavouritesComponent],
+  declarations: [FavouritesComponent, LoginComponent, NewUserComponent],
   exports: [FavouritesComponent],
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
 })
 export class UserModule {}

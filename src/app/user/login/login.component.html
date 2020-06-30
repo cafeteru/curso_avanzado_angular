@@ -1,0 +1,17 @@
+<div class="row justify-content-center">
+  <form class="col-6 mt-4 mb-4" [formGroup]="myFormGroup">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" placeholder="Enter your username"
+        formControlName="username">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Your password" formControlName="password">
+    </div>
+    <span *ngIf="!myFormGroup.valid" class="text-danger">Please fill all the fields</span>
+    <button type="submit" class="btn btn-primary float-right" [disabled]="!myFormGroup.valid"
+      (click)="onLoginClick()">Login</button>
+    <button type="button" class="btn btn-secondary float-right mr-2" (click)="onNewUserClick()">New User</button>
+  </form>
+</div>

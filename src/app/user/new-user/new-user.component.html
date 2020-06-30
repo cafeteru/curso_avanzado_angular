@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+  <form
+    [formGroup]="formGroup"
+    class="col-6 mt-4 mb-4"
+    (ngSubmit)="onCreateUser()"
+  >
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': username.touched && !username.valid }"
+        id="username"
+        formControlName="username"
+        placeholder="Enter your username"
+      />
+      <span class="invalid-feedback">This field is required</span>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        [ngClass]="{ 'is-invalid': password.touched && !password.valid }"
+        formControlName="password"
+        placeholder="Your password"
+      />
+      <span class="invalid-feedback">This field is required</span>
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        [ngClass]="{ 'is-invalid': email.touched && !email.valid }"
+        formControlName="email"
+        placeholder="Your email address"
+      />
+      <span class="invalid-feedback">This field is required</span>
+    </div>
+    <div class="form-group">
+      <label for="favouriteMovie">Your favourite movie</label>
+      <textarea
+        class="form-control"
+        id="favouriteMovie"
+        [ngClass]="{
+          'is-invalid': favouriteMovie.touched && !favouriteMovie.valid
+        }"
+        formControlName="favouriteMovie"
+        placeholder="Tell us what is your favourite movie. Just be honest about it, we won't judge you :-)"
+      ></textarea>
+      <span class="invalid-feedback"
+        >Oops! Only Terminator fans are allowed on this site. Go away!</span
+      >
+    </div>
+    <button type="submit" class="btn btn-primary float-right pl-5 pr-5">
+      Create User
+    </button>
+  </form>
+</div>
