@@ -4,4 +4,5 @@ export interface Movie {
     imdbID: string;
     type: string;
     poster: string;
+    state: string;
 }

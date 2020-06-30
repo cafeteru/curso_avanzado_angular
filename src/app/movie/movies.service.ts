@@ -12,7 +12,7 @@ export class MoviesService {
   static API_URI: string = 'https://www.omdbapi.com';
   static API_KEY: string = 'b0930d45';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   search(searchTerm?: string): Observable<Movie[]> {
     if (!searchTerm) {
@@ -21,10 +21,10 @@ export class MoviesService {
     return this.httpClient
       .get<any>(
         MoviesService.API_URI +
-          '/?s=' +
-          searchTerm +
-          '&apiKey=' +
-          MoviesService.API_KEY
+        '/?s=' +
+        searchTerm +
+        '&apiKey=' +
+        MoviesService.API_KEY
       )
       .pipe(map((response) => this.convertToMovies(response.Search)));
   }
@@ -33,10 +33,10 @@ export class MoviesService {
     return this.httpClient
       .get<any>(
         MoviesService.API_URI +
-          '/?i=' +
-          imdbID +
-          '&apiKey=' +
-          MoviesService.API_KEY
+        '/?i=' +
+        imdbID +
+        '&apiKey=' +
+        MoviesService.API_KEY
       )
       .pipe(map((response) => this.convertToMovieDetail(response)));
   }
@@ -49,6 +49,7 @@ export class MoviesService {
         poster: movie.Poster,
         type: movie.Type,
         year: movie.Year,
+        state: ''
       };
     });
   }
@@ -62,6 +63,7 @@ export class MoviesService {
       year: movie.Year,
       plot: movie.Plot,
       runtime: movie.Runtime,
+      state: ''
     };
   }
 }
