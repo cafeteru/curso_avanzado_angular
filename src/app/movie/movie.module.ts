@@ -10,6 +10,7 @@ import { MoviesService } from './movies.service';
 import { MovieSearchComponent } from './movies/movie-search/movie-search.component';
 import { MovieTitleComponent } from './movies/movie-title/movie-title.component';
 import { MoviesComponent } from './movies/movies.component';
+import { UserModule } from '../user/user.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MoviesComponent } from './movies/movies.component';
     SharedModule,
     FormsModule,
     RouterModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    UserModule
   ],
   providers: [MoviesService],
 })
