@@ -1,0 +1,34 @@
+<div class="row justify-content-center">
+  <app-movie-search (search)="onSearch($event)" class="col-10 mb-4 mt-4"></app-movie-search>
+</div>
+<div class="row justify-content-center">
+  <table class="table table-hover col-10">
+    <thead>
+      <tr>
+
+        <th scope="col"></th>
+        <th scope="col">Title</th>
+        <th scope="col">Year</th>
+        <th scope="col">Type</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="movies$ | async as movies; else noMoviesAvailable">
+        <tr *ngFor="let movie of movies">
+          <td><img class="img-responsive img-rounded image"
+            [src]="movie.poster"/></td>
+          <td><app-movie-title (titleClick)="onTitleClick(movie)" [movie]="movie"></app-movie-title></td>
+          <td [appTableSuccess]="isYoungMovie(movie.year)">{{movie.year}}</td> 
+          <td>{{movie.type}}</td>
+          <td (click)="onFavouriteMovieClick(movie)"><button type="button" class="btn btn-danger"> + </button></td>
+        </tr>
+      </ng-container>
+      <ng-template #noMoviesAvailable>
+        <tr>
+          <td colspan="4" class="text-center">No movies available :(</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

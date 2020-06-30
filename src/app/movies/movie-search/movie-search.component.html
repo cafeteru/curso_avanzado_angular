@@ -1,0 +1,14 @@
+<form class="form-inline row" (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="col-8">
+        <input type="text" class="form-control w-100" placeholder ="Specify a search term.." name="searchTerm" ngModel (ngModelChange)="filterMovies($event)" [matAutocomplete]="autocomplete" #searchTerm="ngModel"/>
+        <mat-autocomplete #autocomplete="matAutocomplete">
+            <mat-option 
+               *ngFor="let movie of filteredMovies$ | async"
+               [value]="movie.title">
+               {{movie.title}}
+            </mat-option>
+        </mat-autocomplete>
+        <small *ngIf="searchTerm.touched && searchTerm.invalid" class="form-text text-mutted">Search term must not exceed 10 characters and must not contain spaces.</small>
+    </div>
+    <button type="submit" class="btn btn-secondary col-3 ml-auto" [disabled]="form.invalid">Search</button>
+</form>
