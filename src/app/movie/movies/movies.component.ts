@@ -3,6 +3,7 @@ import { Movie } from 'src/domain/movie';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { MoviesService } from '../movies.service';
+import { UserService } from 'src/app/core/user.service';
 
 @Component({
   selector: 'app-movies',
@@ -12,7 +13,11 @@ import { MoviesService } from '../movies.service';
 export class MoviesComponent implements OnInit {
   movies$: Observable<Movie[]>;
 
-  constructor(private moviesService: MoviesService, private router: Router) {}
+  constructor(
+    private moviesService: MoviesService,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.movies$ = this.moviesService.search();
@@ -23,7 +28,7 @@ export class MoviesComponent implements OnInit {
   }
 
   onFavouriteMovieClick(movie: Movie): void {
-    this.moviesService.saveFavouriteMovie(movie);
+    this.userService.saveFavouriteMovie(movie);
   }
 
   onSearch(searchTerm: string): void {

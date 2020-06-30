@@ -1,32 +1,31 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MoviesComponent } from './movies/movies.component';
-import { MovieTitleComponent } from './movies/movie-title/movie-title.component';
-import { MovieSearchComponent } from './movies/movie-search/movie-search.component';
-import { MoviesService } from './movies.service';
-import { HttpClientModule } from '@angular/common/http';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
 import { SharedModule } from '../shared/shared.module';
-
-
+import { DetailComponent } from './detail/detail.component';
+import { MoviesService } from './movies.service';
+import { MovieSearchComponent } from './movies/movie-search/movie-search.component';
+import { MovieTitleComponent } from './movies/movie-title/movie-title.component';
+import { MoviesComponent } from './movies/movies.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     MoviesComponent,
     MovieTitleComponent,
     MovieSearchComponent,
-    MovieTitleComponent,
+    DetailComponent,
   ],
+  exports: [MoviesComponent, DetailComponent],
   imports: [
     CommonModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatAutocompleteModule,
+    SharedModule,
     FormsModule,
-    SharedModule
+    RouterModule,
+    MatAutocompleteModule
   ],
-  providers: [MoviesService]
+  providers: [MoviesService],
 })
-export class MovieModule { }
+export class MovieModule {}
