@@ -11,20 +11,20 @@ import { MovieDetail } from 'src/domain/movie-detail';
 export class MoviesService {
 
   static API_URI: string = 'https://www.omdbapi.com';
-  static API_KEY: string = 'yourAPIKey';
+  static API_KEY: string = 'b0930d45';
 
   favouriteMovies: Movie[] = [];
 
   constructor(private httpClient: HttpClient) { }
-  
+
   saveFavouriteMovie(movie: Movie): void {
     this.favouriteMovies.push(movie);
   }
-  
+
 
   search(searchTerm? : string): Observable<Movie[]> {
     if (!searchTerm){
-      searchTerm = "Terminator"; 
+      searchTerm = "Terminator";
     }
     return this.httpClient.get<any>(MoviesService.API_URI + '/?s='+ searchTerm + '&apiKey='+ MoviesService.API_KEY)
       .pipe(map((response) => this.convertToMovies(response.Search)));

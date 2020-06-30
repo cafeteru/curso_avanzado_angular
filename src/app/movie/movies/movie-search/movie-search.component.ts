@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/domain/movie';
-import { MoviesService } from 'src/app/movies.service';
+
+import { MoviesService } from '../../movies.service';
 
 @Component({
   selector: 'app-movie-search',
@@ -12,7 +13,7 @@ export class MovieSearchComponent implements OnInit {
 
   filteredMovies$: Observable<Movie[]>;
 
-  @Output() 
+  @Output()
   search: EventEmitter<string> = new EventEmitter();
 
   constructor(private moviesService: MoviesService) { }
