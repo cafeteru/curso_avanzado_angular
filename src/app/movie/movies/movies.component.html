@@ -16,12 +16,14 @@
     <tbody>
       <ng-container *ngIf="movies$ | async as movies">
         <tr *ngFor="let movie of movies" @dissapearing>
-          <td><img class="img-responsive img-rounded image"
-            [src]="movie.poster"/></td>
-          <td><app-movie-title (titleClick)="onTitleClick(movie)" [movie]="movie"></app-movie-title></td>
+          <td><img class="img-responsive img-rounded image" [src]="movie.poster" /></td>
+          <td>
+            <app-movie-title (titleClick)="onTitleClick(movie)" [movie]="movie"></app-movie-title>
+          </td>
           <td [appTableSuccess]="isYoungMovie(movie.year)">{{movie.year}}</td>
           <td>{{movie.type}}</td>
-          <td [@favourite]="movie.state" (click)="onFavouriteMovieClick(movie)"><button type="button" class="btn btn-danger"> + </button></td>
+          <td (click)="onFavouriteMovieClick(movie)">
+            <button type="button" class="btn btn-danger" [@favourite]="movie.state"> + </button></td>
         </tr>
         <tr *ngIf="!movies.length">
           <td colspan="4" class="text-center">No movies available :(</td>
