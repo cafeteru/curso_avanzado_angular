@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { MovieModule } from './movie/movie.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UserModule } from './user/user.module';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserModule } from './user/user.module';
     AppRoutingModule,
     CoreModule,
     MovieModule,
-    UserModule
+    UserModule,
+    OverlayModule
   ],
   bootstrap: [AppComponent]
 })
