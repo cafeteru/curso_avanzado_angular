@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Movie } from 'src/domain/movie';
 import { UserData } from 'src/domain/user-data';
 import { UserLogin } from 'src/domain/user-login';
+
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,8 @@ import { UserLogin } from 'src/domain/user-login';
 export class UserService {
   static API_URI = 'https://movies-backend-treetechnology.herokuapp.com';
   favouriteMovies: Movie[] = [];
+
+  private jwtHelper = new JwtHelperService();
 
   constructor(
     private httpClient: HttpClient
@@ -31,5 +35,9 @@ export class UserService {
         console.log(res);
         localStorage.setItem('access_token', res.token);
       }));
+  }
+
+  isLoggedIn(): boolean {
+    return !this.jwtHelper.isTokenExpired(localStorage.getItem('access_token'));
   }
 }

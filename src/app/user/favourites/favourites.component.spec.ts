@@ -4,8 +4,6 @@ import { Movie } from 'src/domain/movie';
 
 import { FavouritesComponent } from './favourites.component';
 
-
-
 describe('FavouritesComponent', () => {
   let component: FavouritesComponent;
   let fixture: ComponentFixture<FavouritesComponent>;
@@ -15,7 +13,8 @@ describe('FavouritesComponent', () => {
     poster: '/',
     title: 'A sample title',
     type: 'safa',
-    year: 2000
+    year: 2000,
+    state: ''
   };
 
   const moviesServiceMock = jasmine.createSpyObj('MoviesService',

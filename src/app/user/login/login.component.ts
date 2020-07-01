@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    localStorage.clear();
     this.myFormGroup = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl(''),

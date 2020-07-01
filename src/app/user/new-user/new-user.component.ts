@@ -59,16 +59,15 @@ export class NewUserComponent implements OnInit, OnDestroy {
     let message = '';
     if (this.formGroup.valid) {
       const user = this.formGroup.value as UserData;
-      const myObservable$ = this.userService.createUser(user);
-      this.subscription = myObservable$.subscribe(() => {
+      this.subscription = this.userService.createUser(user).subscribe(() => {
         message = 'The requested operation was successfully completed.';
         this.toastService.openToast(ToastSuccessComponent, message);
         setTimeout(() => this.router.navigate(['/']), 100);
         this.router.navigate(['/']);
       },
-        () => {
-          message = 'API failed, please review your input.';
-          this.toastService.openToast(ToastWarningComponent, message);
+        (errorResponse) => {
+          this.toastService.openToast(
+            ToastWarningComponent, errorResponse.error.message);
         });
 
     } else {
