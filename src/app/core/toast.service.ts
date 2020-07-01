@@ -23,7 +23,7 @@ export class ToastService {
       this.overlayRef = this.overlay.create(config);
       this.overlayRef.attach(new ComponentPortal(component));
 
-      // Los toast messages solo se deben mostrar 6 segundos
+      // Los toast messages solo se deben mostrar 4 segundos
       setTimeout(() => this.hideOverlay(), 4000);
     }
   }
