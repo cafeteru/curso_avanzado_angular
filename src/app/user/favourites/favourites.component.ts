@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/core/user.service';
+import { forkJoin, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { MoviesService } from 'src/app/shared/services/movies.service';
 import { Movie } from 'src/domain/movie';
 
 @Component({
@@ -8,11 +10,14 @@ import { Movie } from 'src/domain/movie';
   styleUrls: ['./favourites.component.css'],
 })
 export class FavouritesComponent implements OnInit {
-  favouriteMovies: Movie[] = [];
+  favouriteMovies$: Observable<Movie[]>;
 
-  constructor(private userService: UserService) {}
+  constructor(private moviesService: MoviesService) { }
 
   ngOnInit(): void {
-    this.favouriteMovies = this.userService.favouriteMovies;
+    this.favouriteMovies$ = this.moviesService.getFavouriteMovies().pipe(
+      map((ids) => ids.map((id) => this.moviesService.get(id))),
+      switchMap((movies) => forkJoin(movies))
+    );
   }
 }

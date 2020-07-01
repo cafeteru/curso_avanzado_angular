@@ -1,5 +1,8 @@
 <div class="row justify-content-center">
-  <app-movie-search (search)="onSearch($event)" class="col-10 mb-4 mt-4"></app-movie-search>
+  <app-movie-search (search)="onSearch($event)" class="col-8 mb-4 mt-4"></app-movie-search>
+  <div class="col-2 mt-4 text-center">
+    <button type="button" class="btn btn-danger w-100" routerLink="/app/favourites">Your picks ♡</button>
+  </div>
 </div>
 <div class="row justify-content-center">
   <table class="table table-hover col-10">
@@ -32,4 +35,3 @@
     </tbody>
   </table>
 </div>
-<app-favourites></app-favourites>

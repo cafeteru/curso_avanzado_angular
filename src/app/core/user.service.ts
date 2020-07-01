@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Movie } from 'src/domain/movie';
 import { UserData } from 'src/domain/user-data';
 import { UserLogin } from 'src/domain/user-login';
 
@@ -13,7 +12,6 @@ import { UserLogin } from 'src/domain/user-login';
 })
 export class UserService {
   static API_URI = 'https://movies-backend-treetechnology.herokuapp.com';
-  favouriteMovies: Movie[] = [];
 
   private jwtHelper = new JwtHelperService();
 
@@ -21,16 +19,19 @@ export class UserService {
     private httpClient: HttpClient
   ) { }
 
-  saveFavouriteMovie(movie: Movie): void {
-    this.favouriteMovies.push(movie);
+  saveFavouriteMovie(imdbID: string): Observable<void> {
+    return this.httpClient.post<void>(
+      UserService.API_URI + '/api/favourite/add/' + imdbID, {});
   }
 
   createUser(userData: UserData): Observable<UserData> {
-    return this.httpClient.post<UserData>(UserService.API_URI + '/api/auth/register', userData);
+    return this.httpClient.post<UserData>(
+      UserService.API_URI + '/api/auth/register', userData);
   }
 
   login(userLogin: UserLogin): Observable<any> {
-    return this.httpClient.post<void>(UserService.API_URI + '/api/auth/login', userLogin)
+    return this.httpClient.post<void>(
+      UserService.API_URI + '/api/auth/login', userLogin)
       .pipe(tap((res: any) => {
         console.log(res);
         localStorage.setItem('access_token', res.token);

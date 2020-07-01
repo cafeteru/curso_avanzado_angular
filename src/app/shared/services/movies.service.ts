@@ -1,16 +1,18 @@
-import { Injectable } from '@angular/core';
-import { Movie } from 'src/domain/movie';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Movie } from 'src/domain/movie';
 import { MovieDetail } from 'src/domain/movie-detail';
+
+import { UserService } from '../../core/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MoviesService {
-  static API_URI: string = 'https://www.omdbapi.com';
-  static API_KEY: string = 'b0930d45';
+  static API_URI = 'https://www.omdbapi.com';
+  static API_KEY = 'b0930d45';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -65,5 +67,10 @@ export class MoviesService {
       runtime: movie.Runtime,
       state: ''
     };
+  }
+
+  getFavouriteMovies(): Observable<string[]> {
+    return this.httpClient.get<string[]>(
+      UserService.API_URI + '/api/favourite/list/');
   }
 }

@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/domain/movie';
 
-import { MoviesService } from '../../movies.service';
+import { MoviesService } from '../../../shared/services/movies.service';
 
 @Component({
   selector: 'app-movie-search',

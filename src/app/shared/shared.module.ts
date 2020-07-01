@@ -5,6 +5,7 @@ import { ToastSuccessComponent } from './components/toast-success/toast-success.
 import { ToastWarningComponent } from './components/toast-warning/toast-warning.component';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { ImpressivePipe } from './impressive.pipe';
+import { MoviesService } from './services/movies.service';
 import { TableSuccessDirective } from './table-success.directive';
 
 @NgModule({
@@ -24,6 +25,9 @@ import { TableSuccessDirective } from './table-success.directive';
   entryComponents: [
     ToastSuccessComponent,
     ToastWarningComponent,
+  ],
+  providers: [
+    MoviesService
   ]
 })
 export class SharedModule { }

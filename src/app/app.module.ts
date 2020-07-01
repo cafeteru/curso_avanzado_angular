@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { MovieModule } from './movie/movie.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UserModule } from './user/user.module';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,14 @@ import { UserModule } from './user/user.module';
     UserModule,
     OverlayModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('access_token'),
+        whitelistedDomains: ['movies-backend-treetechnology.herokuapp.com'], // Only send token to movies-backend API
+        blacklistedRoutes: ['https://movies-backend-treetechnology.herokuapp.com/api/auth/*'], // Do not send the token for the auth routes
+      },
+    })
   ],
   bootstrap: [AppComponent]
 })

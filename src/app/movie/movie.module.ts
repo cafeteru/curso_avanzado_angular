@@ -5,12 +5,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
+import { UserModule } from '../user/user.module';
 import { DetailComponent } from './detail/detail.component';
-import { MoviesService } from './movies.service';
 import { MovieSearchComponent } from './movies/movie-search/movie-search.component';
 import { MovieTitleComponent } from './movies/movie-title/movie-title.component';
 import { MoviesComponent } from './movies/movies.component';
-import { UserModule } from '../user/user.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +27,6 @@ import { UserModule } from '../user/user.module';
     MatAutocompleteModule,
     UserModule
   ],
-  providers: [MoviesService],
+  providers: [],
 })
-export class MovieModule {}
+export class MovieModule { }

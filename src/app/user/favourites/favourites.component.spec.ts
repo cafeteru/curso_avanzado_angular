@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MoviesService } from 'src/app/movie/movies.service';
+import { MoviesService } from 'src/app/shared/services/movies.service';
 import { Movie } from 'src/domain/movie';
 
 import { FavouritesComponent } from './favourites.component';

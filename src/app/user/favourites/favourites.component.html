@@ -1,5 +1,14 @@
-<h3 class="m-2 mt-4">My Favourite movies </h3>
-<ul class="list-group list-group-horizontal m-4">
-    <li class="list-group-item" *ngFor="let movie of favouriteMovies">{{movie.title}}, {{movie.year}}</li>
-</ul>
-<p class="ml-4" *ngIf="!favouriteMovies.length">No favourite movies saved</p>
+<div class="row justify-content-center">
+  <div class="col-10">
+    <h3 class="m-2 mt-4">My Favourite movies </h3>
+    <ng-container *ngIf="favouriteMovies$ | async as movies">
+      <ul class="list-group m-4">
+        <li class="list-group-item" *ngFor="let movie of movies">{{movie.title}}, {{movie.year}}</li>
+      </ul>
+      <p class="ml-4" *ngIf="!movies.length">No favourite movies saved</p>
+    </ng-container>
+    <div class="row mt-5">
+      <div class="col-2"><a [routerLink]="['/']" class="btn btn-primary w-100" href="#">Go Back</a></div>
+    </div>
+  </div>
+</div>

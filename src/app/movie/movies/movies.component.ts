@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { UserService } from 'src/app/core/user.service';
 import { Movie } from 'src/domain/movie';
 
-import { MoviesService } from '../movies.service';
+import { MoviesService } from '../../shared/services/movies.service';
 
 @Component({
   selector: 'app-movies',
@@ -47,8 +47,9 @@ export class MoviesComponent implements OnInit {
   }
 
   onFavouriteMovieClick(movie: Movie): void {
-    movie.state = 'fav';
-    this.userService.saveFavouriteMovie(movie);
+    this.userService.saveFavouriteMovie(movie.imdbID).subscribe(
+      () => movie.state = 'fav'
+    );
   }
 
   onSearch(searchTerm: string): void {
