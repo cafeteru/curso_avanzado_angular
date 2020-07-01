@@ -51,13 +51,13 @@ export class NewUserComponent implements OnInit {
     if (this.formGroup.valid) {
       toast = ToastSuccessComponent;
       message = 'The requested operation was successfully completed.';
+      // Allow toast to be rendered before component removal
+      setTimeout(() => this.router.navigate(['/']), 100);
+      this.router.navigate(['/']);
     } else {
       toast = ToastWarningComponent;
       message = 'Form validation failed, please review your input.';
     }
     this.toastService.openToast(toast, message);
-    // Allow toast to be rendered before component removal
-    setTimeout(() => this.router.navigate(['/']), 100);
-    this.router.navigate(['/']);
   }
 }

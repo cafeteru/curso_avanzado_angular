@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { ToastSuccessComponent } from './components/toast-success/toast-success.component';
 import { ToastWarningComponent } from './components/toast-warning/toast-warning.component';
-import { ToastComponent } from './components/toast/toast.component';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { ImpressivePipe } from './impressive.pipe';
 import { TableSuccessDirective } from './table-success.directive';
@@ -12,7 +11,6 @@ import { TableSuccessDirective } from './table-success.directive';
   declarations: [
     ImpressivePipe,
     TableSuccessDirective,
-    ToastComponent,
     ToastSuccessComponent,
     ToastWarningComponent,
     FormFieldComponent
@@ -23,5 +21,9 @@ import { TableSuccessDirective } from './table-success.directive';
     FormFieldComponent
   ],
   imports: [CommonModule],
+  entryComponents: [
+    ToastSuccessComponent,
+    ToastWarningComponent,
+  ]
 })
 export class SharedModule { }
