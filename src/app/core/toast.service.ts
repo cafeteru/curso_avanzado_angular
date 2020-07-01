@@ -1,6 +1,8 @@
 import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Injectable } from '@angular/core';
+import { ComponentRef, Injectable } from '@angular/core';
+
+import { ToastComponent } from '../shared/components/toast/toast.component';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class ToastService {
 
   constructor(public overlay: Overlay) { }
 
-  openToast(component: any): void {
+  openToast(component: any, toastMessage?: string): void {
     if (!this.overlayRef) {
       // Configurar el overlay
       const config = new OverlayConfig();
@@ -21,7 +23,9 @@ export class ToastService {
 
       // Crearlo y enlazarle el componente referenciado
       this.overlayRef = this.overlay.create(config);
-      this.overlayRef.attach(new ComponentPortal(component));
+      const compRef: ComponentRef<ToastComponent> = this.overlayRef.attach(
+        new ComponentPortal(component));
+      compRef.instance.toastMessage = toastMessage;
 
       // Los toast messages solo se deben mostrar 4 segundos
       setTimeout(() => this.hideOverlay(), 4000);

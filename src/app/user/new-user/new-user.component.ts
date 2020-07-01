@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastService } from 'src/app/core/toast.service';
+import { ToastSuccessComponent } from 'src/app/shared/components/toast-success/toast-success.component';
+import { ToastWarningComponent } from 'src/app/shared/components/toast-warning/toast-warning.component';
 
 import { isTerminatorFan } from './is-terminator-fan';
-import { Router } from '@angular/router';
-import { ToastComponent } from 'src/app/shared/toast/toast.component';
-import { ToastService } from 'src/app/core/toast.service';
 
 @Component({
   selector: 'app-new-user',
@@ -45,11 +46,18 @@ export class NewUserComponent implements OnInit {
 
   onCreateUser(): void {
     this.formGroup.markAllAsTouched();
+    let toast = null;
+    let message = '';
     if (this.formGroup.valid) {
-      this.toastService.openToast(ToastComponent);
-      // Allow toast to be rendered before component removal
-      setTimeout(() => { this.router.navigate(['/']) }, 100);
-      this.router.navigate(['/']);
+      toast = ToastSuccessComponent;
+      message = 'The requested operation was successfully completed.';
+    } else {
+      toast = ToastWarningComponent;
+      message = 'Form validation failed, please review your input.';
     }
+    this.toastService.openToast(toast, message);
+    // Allow toast to be rendered before component removal
+    setTimeout(() => this.router.navigate(['/']), 100);
+    this.router.navigate(['/']);
   }
 }
