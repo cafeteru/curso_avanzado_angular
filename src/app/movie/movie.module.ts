@@ -10,6 +10,7 @@ import { DetailComponent } from './detail/detail.component';
 import { MovieSearchComponent } from './movies/movie-search/movie-search.component';
 import { MovieTitleComponent } from './movies/movie-title/movie-title.component';
 import { MoviesComponent } from './movies/movies.component';
+import { MovieRoutingModule } from './movie-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MoviesComponent } from './movies/movies.component';
     FormsModule,
     RouterModule,
     MatAutocompleteModule,
-    UserModule
+    UserModule,
+    MovieRoutingModule
   ],
   providers: [],
 })
