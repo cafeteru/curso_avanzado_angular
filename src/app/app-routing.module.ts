@@ -16,7 +16,8 @@ const routes: Routes = [
   {
     path: 'app',
     loadChildren: () => import('./movie/movie.module').then(m => m.MovieModule)
-  }, {
+  },
+  {
     path: 'app/favourites',
     component: FavouritesComponent,
     canActivate: [PrivateRouteGuard]

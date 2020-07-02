@@ -5,7 +5,11 @@ import {DetailComponent} from './detail/detail.component';
 import {PrivateRouteGuard} from '../private-route.guard';
 
 const routes: Routes = [
-  {path: '', component: MoviesComponent, canActivate: [PrivateRouteGuard]},
+  {
+    path: '',
+    component: MoviesComponent,
+    canActivate: [PrivateRouteGuard]
+  },
   {
     path: 'movie/:imdbID',
     component: DetailComponent,
