@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { UserData } from 'src/domain/user-data';
-import { UserLogin } from 'src/domain/user-login';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {JwtHelperService} from '@auth0/angular-jwt';
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {UserData} from 'src/domain/user-data';
+import {UserLogin} from 'src/domain/user-login';
 
 
 @Injectable({
@@ -17,7 +17,8 @@ export class UserService {
 
   constructor(
     private httpClient: HttpClient
-  ) { }
+  ) {
+  }
 
   saveFavouriteMovie(imdbID: string): Observable<void> {
     return this.httpClient.post<void>(
